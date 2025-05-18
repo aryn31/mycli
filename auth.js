@@ -1,6 +1,6 @@
 const fs = require('fs')
 const bcrypt = require('bcrypt')
-const USERS_FILE = 'users.json';
+const USERS_FILE = '/Users/aryansheel/Desktop/mycli/users.json';
 
 function loadUsers(){
     if(!fs.existsSync(USERS_FILE)) return [];
