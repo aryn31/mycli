@@ -1,17 +1,26 @@
 const fs= require('fs')
 const path= require('path');
 const { stringify } = require('querystring');
+const { getLoggedInUser } = require('./auth');
 
 const NOTES_FILE = path.join(__dirname,'notes.json');
 
-function loadNotes(){
-    if(!fs.existsSync(NOTES_FILE)) return [];
-    return JSON.parse(fs.readFileSync(NOTES_FILE));
+function loadNotes() {
+  const username = getLoggedInUser();
+  if (!username) return [];
+  const file = `${username}_notes.json`;
+  if (!fs.existsSync(file)) return [];
+  return JSON.parse(fs.readFileSync(file));
 }
 
-function saveNotes(notes){
-    fs.writeFileSync(NOTES_FILE,JSON.stringify(notes,null,2));
+
+function saveNotes(notes) {
+  const username = getLoggedInUser();
+  if (!username) return console.log('You must log in first.');
+
+  fs.writeFileSync(`${username}_notes.json`, JSON.stringify(notes, null, 2));
 }
+
 
 function addNote(title,content){
     const notes = loadNotes();

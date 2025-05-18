@@ -10,10 +10,12 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "commander": "^14.0.0"
+    "bcrypt": "^6.0.0",
+    "commander": "^14.0.0",
+    "inquirer": "^12.6.1",
+    "mongodb": "^6.16.0"
   },
   "bin": {
-  "notes": "./index.js"
+    "notes": "./index.js"
   }
-
 }

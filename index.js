@@ -27,4 +27,29 @@ program
   .description('Search notes by keyword')
   .action(searchNotes);
 
+program
+  .command('register <username> <password>')
+  .description('Register a new user')
+  .action(async (u, p) => {
+    await require('./auth').register(u, p);
+  });
+
+program
+  .command('login <username> <password>')
+  .description('Login as an existing user')
+  .action(async (u, p) => {
+    await require('./auth').login(u, p);
+  });
+
+program
+  .command('logout')
+  .description('Log out of the current session')
+  .action(() => {
+    require('./auth').logout(); // If logout is sync, this is fine
+  });
+
+
 program.parse(process.argv);
+
+
+
