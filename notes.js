@@ -69,4 +69,9 @@ function searchNotes(keyword){
     });
 }
 
-module.exports = { addNote, listNotes, viewNote, deleteNote, searchNotes };
+function whoami(){
+    const username=getLoggedInUser();
+    console.log(`You are ${username}`)
+}
+
+module.exports = { addNote, listNotes, viewNote, deleteNote, searchNotes, whoami};

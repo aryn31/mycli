@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { program } = require('commander');
-const { addNote, listNotes, viewNote, deleteNote, searchNotes } = require('./notes');
+const { addNote, listNotes, viewNote, deleteNote, searchNotes, whoami} = require('./notes');
 
 program
   .command('add <title> <content>')
@@ -47,7 +47,10 @@ program
   .action(() => {
     require('./auth').logout(); // If logout is sync, this is fine
   });
-
+program
+  .command('whoami')
+  .description('Get the name of the logged in user')
+  .action(whoami)
 
 program.parse(process.argv);
 
